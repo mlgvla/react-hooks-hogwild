@@ -1,18 +1,22 @@
-import React from "react"
+import React, { useState } from "react"
 import Nav from "./Nav"
 import HogList from "./HogList"
 
 import hogs from "../porkers_data"
 
 function App() {
-  const hogsToDisplay = [...hogs] // temporary
+  const [showGreased, setShowGreased] = useState(false)
+
+
+  const hogsToDisplay = hogs.filter(hog => {
+      if(!showGreased) return true
+      return hog.greased === showGreased
+  })
   return (
     <div className="App">
-      <Nav />
-      <div className="ui grid container">
-        <div className="ui sixteen wide centered">
-          <HogList hogs={hogsToDisplay} />
-        </div>
+      <Nav showGreased={showGreased} onSetShowGreased={setShowGreased} />
+      <div>
+        <HogList hogs={hogsToDisplay} />
       </div>
     </div>
   )
