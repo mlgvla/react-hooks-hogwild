@@ -1,10 +1,13 @@
 import React from 'react';
+import HogCard from './HogCard';
 
 const HogList = ({hogs}) => {
-    console.log(hogs)
+
+    const hogCards = hogs.map(hog => <HogCard key={hog.name} hog={hog} />)
+
     return (
-        <div>
-            
+        <div className="ui grid container cards" style={{textAlign:"left"}}>
+            {hogCards}
         </div>
     );
 }
